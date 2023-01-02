@@ -5,7 +5,28 @@
     <link rel="stylesheet" type="text/css" href="css.css">
 </head>
 <body>
-    <div id="main">
-        
+    <div id="title">
+        <p><b>Countries</b></p>
+        <p>Project team members</p>
+        <ol>
+            <i>
+            <li>Sebastian Otręba</li>
+            <li>Grzegorz Siwek</li>
+            <li>Krzysztof Kurowski</li>
+            </i>
+        </ol>
     </div>
+        <div id ="main">
+        <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("main").innerHTML = xhttp.responseText;
+                }
+            };
+            xhttp.open("GET", "https://my.api.mockaroo.com/countries.json?key=a5f11d90", true);
+            xhttp.send();
+        </script>
+        </div>
+
 </body>
