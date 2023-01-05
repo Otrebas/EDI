@@ -18,16 +18,57 @@
         </ol>
     </div>
 
-    <div id ="main">
+    <div id ="data">
         <script>
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("main").innerHTML = xhttp.responseText;
-                }
-            };
-            xhttp.open("GET", "https://my.api.mockaroo.com/countries.json?key=a5f11d90", true);
-            xhttp.send();
+function getData() {
+  // Create an XMLHttpRequest object
+  var http = new XMLHttpRequest();
+
+  // Set the API endpoint URL
+  var url = "https://my.api.mockaroo.com/countries.json?key=a5f11d90";
+
+  // Open a connection to the API
+  http.open("GET", url);
+
+  // Send the request
+  http.send();
+
+  // Wait for the response
+  http.onreadystatechange = function() {
+    // If the request is complete and the status is "OK"
+    if (http.readyState == 4 && http.status == 200) {
+      // Get the data from the API response and parse it as a JSON object
+      var data = JSON.parse(http.responseText);
+
+      // Create a table to display the data
+      var table = "<table border='1'>";
+      table += "<tr><th>Country</th><th>Population</th><th>Avarage Life Expectancy</th><th>Human Capital Index</th><th>CO2 Emissions</th><th>Access to Electricity</th><th>Forest Area (%)</th><th>Avarage Temperature</th></tr>";
+
+      // Loop through the data and add a row for each item
+      for (var i = 0; i < data.length; i++) {
+        table += "<tr>";
+        table += "<td>" + data[i].Country + "</td>";
+        table += "<td>" + data[i].Population + "</td>";
+        table += "<td>" + data[i].Avarage_life_expancy + "</td>";
+        table += "<td>" + data[i].Human_capital_index + "</td>";
+        table += "<td>" + data[i].CO2_emissions + "</td>";
+        table += "<td>" + data[i].Access_to_electricity + "</td>";
+        table += "<td>" + data[i].Forest_area_percent + "</td>";
+        table += "<td>" + data[i].Avarage_temperature + "</td>";
+        table += "</tr>";
+      }
+
+      table += "</table>";
+
+      // Use the innerHTML property to display the table on the page
+      document.getElementById("data").innerHTML = table;
+    }
+  }
+}
+
+
+      // Call the getData function when the page loads
+      window.onload = getData;
         </script>
     </div>
 
