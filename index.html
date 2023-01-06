@@ -1,76 +1,96 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Projekt EDI</title>
-    <link rel="stylesheet" type="text/css" href="css.css">
-</head>
-<body>
-    <div id="title">
-        <p><b>Countries</b></p>
-        <p>Project team members</p>
-        <ol>
-            <i>
-            <li>Sebastian Otręba</li>
-            <li>Grzegorz Siwek</li>
-            <li>Krzysztof Kurowski</li>
-            </i>
-        </ol>
-    </div>
 
-    <div id ="data">
-        <script>
-function getData() {
-  // Create an XMLHttpRequest object
-  var http = new XMLHttpRequest();
-
-  // Set the API endpoint URL
-  var url = "https://my.api.mockaroo.com/countries.json?key=a5f11d90";
-
-  // Open a connection to the API
-  http.open("GET", url);
-
-  // Send the request
-  http.send();
-
-  // Wait for the response
-  http.onreadystatechange = function() {
-    // If the request is complete and the status is "OK"
-    if (http.readyState == 4 && http.status == 200) {
-      // Get the data from the API response and parse it as a JSON object
-      var data = JSON.parse(http.responseText);
-
-      // Create a table to display the data
-      var table = "<table border='1'>";
-      table += "<tr><th>Country</th><th>Population</th><th>Avarage Life Expectancy</th><th>Human Capital Index</th><th>CO2 Emissions</th><th>Access to Electricity</th><th>Forest Area (%)</th><th>Avarage Temperature</th></tr>";
-
-      // Loop through the data and add a row for each item
-      for (var i = 0; i < data.length; i++) {
-        table += "<tr>";
-        table += "<td>" + data[i].Country + "</td>";
-        table += "<td>" + data[i].Population + "</td>";
-        table += "<td>" + data[i].Avarage_life_expancy + "</td>";
-        table += "<td>" + data[i].Human_capital_index + "</td>";
-        table += "<td>" + data[i].CO2_emissions + "</td>";
-        table += "<td>" + data[i].Access_to_electricity + "</td>";
-        table += "<td>" + data[i].Forest_area_percent + "</td>";
-        table += "<td>" + data[i].Avarage_temperature + "</td>";
-        table += "</tr>";
+    <!--Chart.js link -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+    <!-- Bootstrap link -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- Style for Chart.js -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        outline: 0px solid transparent;
       }
-
-      table += "</table>";
-
-      // Use the innerHTML property to display the table on the page
-      document.getElementById("data").innerHTML = table;
-    }
-  }
-}
-
-
-      // Call the getData function when the page loads
-      window.onload = getData;
-        </script>
+      .chartMenu {
+        width: 100vw;
+        height: 40px;
+        background: #1a1a1a;
+        color: rgba(54, 162, 235, 1);
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+      .chartCard {
+        width: 99vw;
+        height: calc(100vh - 40px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 700px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(54, 162, 235, 1);
+        background: white;
+      }
+      .chartBox2 {
+        width: 95vw;
+        height: 700px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(54, 162, 235, 1);
+        background: white;
+        margin:none;
+      }
+      canvas {
+        width: 100%;
+      }
+    </style>
+    <script src="scripts.js"></script>
+  </head>
+  <body class="p-3 mb-2 bg-dark text-white w-100 p-3 mw-100 border-0">
+    <h1 class="d-flex justify-content-center display-1"><b>Countries</b></h1>
+      <h2  class="d-flex justify-content-center display-5">Project team members</h2>
+  
+      <ol class="d-flex justify-content-center">
+        <i>
+          <li class="h3">Sebastian Otręba</li>
+          <li class="h3">Grzegorz Siwek</li>
+          <li class="h3">Krzysztof Kurowski</li>
+        </i>
+      </ol>
     </div>
+    <!-- Container for table with data -->
+    <div id="data" class="d-flex justify-content-center"></div>
 
-</body>
+    <br />
+    <div class="chartCard">
+      <!-- Container for doughnut chart -->
+      <div class="chartBox">
+        <canvas id="doughnutChart"></canvas>
+      </div>
+    </div>
+    <div class="chartCard">
+      <!-- Container for bar chart -->
+      <div class="chartBox2 d-flex justify-content-center"  class="d-flex justify-content-center">
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+  </body>
 </html>
