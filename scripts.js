@@ -96,6 +96,7 @@ function getData() {
         {
             countriesPopulation[i]=data[i].Population;
         }
+        //Bar chart
         new Chart(ctxBar, {
             type: 'bar',
             
