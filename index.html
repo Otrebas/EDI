@@ -61,13 +61,22 @@
       canvas {
         width: 100%;
       }
+      body{
+        background-color: #404040;
+        
+      }
+        
+      
     </style>
     <script src="scripts.js"></script>
   </head>
-  <body class="p-3 mb-2 bg-dark text-white w-100 p-3 mw-100 border-0">
-    <h1 class="d-flex justify-content-center display-1"><b>Countries</b></h1>
+  <body class="p-3 mb-2 w-100 p-3 mw-100 border-0"style="--bs-text-opacity: .5;">
+    <div class="mt-5 border border-5 border-info rounded-pill text-info " >
+    <h1 class="d-flex justify-content-center display-1"><b>
+      Countries <small class="text-muted">of the world</small>
+    </b></h1>
       <h2  class="d-flex justify-content-center display-5">Project team members</h2>
-  
+      
       <ol class="d-flex justify-content-center">
         <i>
           <li class="h3">Sebastian Otręba</li>
@@ -76,6 +85,7 @@
         </i>
       </ol>
     </div>
+    <br><br>
     <!-- Container for table with data -->
     <div id="data" class="d-flex justify-content-center"></div>
 
