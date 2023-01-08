@@ -21,7 +21,7 @@ function getData() {
         // Create a table to display the data
         var table = '<table class="table table-dark" border="1">';
         table +=
-          '<tr><th scope="col">Country</th><th scope="col">Population</th><th scope="col">Avarage Life Expectancy</th><th scope="col">Human Capital Index</th><th scope="col">CO2 Emissions</th><th scope="col">Access to Electricity</th><th scope="col">Forest Area (%)</th><th scope="col">Avarage Temperature</th></tr>';
+          '<tr><th scope="col">Country</th><th scope="col">Population</th><th scope="col">Average Life Expectancy</th><th scope="col">Human Capital Index</th><th scope="col">CO2 Emissions</th><th scope="col">Access to Electricity</th><th scope="col">Forest Area (%)</th><th scope="col">Average Temperature</th></tr>';
 
         // Loop through the data and add a row for each item
         for (var i = 0; i < data.length; i++) {
